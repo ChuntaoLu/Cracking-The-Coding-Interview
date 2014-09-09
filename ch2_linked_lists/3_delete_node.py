@@ -9,7 +9,13 @@ def delete_node(node):
     the variable 'node' to the next node, thus does not mutate the node.
     To mutuate the node, one has to change the node object's attributes.
 
-    Argument passing is passing-by-value or passing-by-object-reference.
+    If the node given is the last node, there is no way to delete it.
+    node = None will not work here in a function call, node is a reference
+    variable that points to the node object on the heap, assign it to
+    None does not change the fact that prevous node's next attribute still
+    points to the node object on the heap.
+
+    Argument passing is passing-by-object-reference.
     """
     if node is None or node.next is None:
         return false
