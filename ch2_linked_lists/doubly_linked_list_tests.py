@@ -36,22 +36,19 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(str(self.l), "Linked list: [0<->1]")
     
     def test_remove_from_empty_list(self):
-        old = self.l
         self.l.remove(0)
-        self.assertEqual(self.l, old)
+        self.assertEqual(str(self.l), "Linked list: []")
 
     def test_remove_from_one_node_list(self):
-        old = self.l
         self.l.append(0)
         self.l.remove(0)
-        self.assertEqual(self.l, old)
+        self.assertEqual(str(self.l), "Linked list: []")
 
     def test_remove_from_two_nodes_list(self):
         self.l.append(0)
-        old = self.l
         self.l.append(1)
         self.l.remove(1)
-        self.assertEqual(self.l, old)
+        self.assertEqual(str(self.l), "Linked list: [0]")
 
     def test_remove_first_from_multiple_nodes_list(self):
         for v in range(3):
@@ -68,17 +65,38 @@ class TestLinkedList(unittest.TestCase):
     def test_remove_last_from_multiple_nodes_list(self):
         for v in range(2):
             self.l.append(v)
-        old = self.l
         self.l.append(2)
         self.l.remove(2)
-        self.assertEqual(self.l, old)
+        self.assertEqual(str(self.l), "Linked list: [0<->1]")
 
     def test_remove_none_existing_node(self):
         for v in range(3):
             self.l.append(v)
-        old = self.l
         self.l.remove(4)
-        self.assertEqual(self.l, old)
+        self.assertEqual(str(self.l), "Linked list: [0<->1<->2]")
+
+    def test_reverse_empty_list(self):
+        self.l.reverse()
+        self.assertEqual(str(self.l), "Linked list: []")
+
+    def test_reverse_one_node_list(self):
+        self.l.append(0)
+        self.l.reverse()
+        self.assertEqual(str(self.l), "Linked list: [0]")
+
+    def test_reverse_multiple_nodes_list(self):
+        self.l.append(0)
+        self.l.append(1)
+        self.l.append(2)
+        self.l.reverse()
+        self.assertEqual(str(self.l), "Linked list: [2<->1<->0]")
+
+    def test_reverse_iterative(self):
+        self.l.append(0)
+        self.l.append(1)
+        self.l.append(2)
+        self.l.reverse()
+        self.assertEqual(str(self.l), "Linked list: [2<->1<->0]")
 
 if __name__ == '__main__':
     unittest.main()

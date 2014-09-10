@@ -65,3 +65,29 @@ class LinkedList(object):
             self._remove_first()
         else:
             self._remove_after(self.first, val)
+
+    def _reverse(self, node):
+        if node.next is None:
+            node.prev = None
+            return node
+        prev = self._reverse(node.next)
+        prev.next = node
+        node.prev = prev
+        node.next = None
+        return node
+
+    def reverse(self):
+        if len(self) < 2:
+            return
+        self.first, self.last = self.last, self._reverse(self.first)
+
+    def reverse_iterative(self):
+        prev = None
+        current = self.first
+        self.first, self.last = self.last, self.first
+        while current:
+            next = current.next
+            current.next = prev
+            current.prev = next
+            prev = current
+            current = next
