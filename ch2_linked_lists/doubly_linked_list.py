@@ -37,34 +37,36 @@ class LinkedList(object):
         self.length += 1
 
     def _remove_first(self):
+        node = self.first
         if self.first is self.last:
             self.first = self.last = None
         else:
             self.first = self.first.next
             self.first.prev = None
         self.length -= 1
+        return node
 
     def _remove_after(self, node, val):
         while node.next:
             if node.next.value == val:
+                to_remove = node.next
                 if node.next is self.last:
                     self.last = node
                     node.next = None
                 else:
-                    to_remove = node.next
                     node.next = to_remove.next
                     to_remove.next.prev = node
                 self.length -= 1
-                return
+                return to_remove
             node = node.next
 
     def remove(self, val):
         if self.first is None:
-            return
+            return None
         if self.first.value == val:
-            self._remove_first()
+            return self._remove_first()
         else:
-            self._remove_after(self.first, val)
+            return self._remove_after(self.first, val)
 
     def _reverse(self, node):
         if node.next is None:

@@ -36,43 +36,50 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(str(self.l), "Linked list: [0->1]")
     
     def test_remove_from_empty_list(self):
-        self.l.remove(0)
+        x = self.l.remove(0)
+        self.assertEqual(x, None)
         self.assertEqual(str(self.l), "Linked list: []")
 
     def test_remove_from_one_node_list(self):
         self.l.append(0)
-        self.l.remove(0)
+        x = self.l.remove(0)
+        self.assertEqual(x.value, 0)
         self.assertEqual(str(self.l), "Linked list: []")
 
     def test_remove_from_two_nodes_list(self):
         self.l.append(0)
         self.l.append(1)
-        self.l.remove(1)
+        x = self.l.remove(1)
+        self.assertEqual(x.value, 1)
         self.assertEqual(str(self.l), "Linked list: [0]")
 
     def test_remove_first_from_multiple_nodes_list(self):
         for v in range(3):
             self.l.append(v)
-        self.l.remove(0)
+        x = self.l.remove(0)
+        self.assertEqual(x.value, 0)
         self.assertEqual(str(self.l), "Linked list: [1->2]")
 
     def test_remove_middle_from_multiple_nodes_list(self):
         for v in range(3):
             self.l.append(v)
-        self.l.remove(1)
+        x = self.l.remove(1)
+        self.assertEqual(x.value, 1)
         self.assertEqual(str(self.l), "Linked list: [0->2]")
 
     def test_remove_last_from_multiple_nodes_list(self):
         for v in range(2):
             self.l.append(v)
         self.l.append(2)
-        self.l.remove(2)
+        x = self.l.remove(2)
+        self.assertEqual(x.value, 2)
         self.assertEqual(str(self.l), "Linked list: [0->1]")
 
     def test_remove_none_existing_node(self):
         for v in range(3):
             self.l.append(v)
-        self.l.remove(4)
+        x = self.l.remove(4)
+        self.assertEqual(x, None)
         self.assertEqual(str(self.l), "Linked list: [0->1->2]")
 
     def test_reverse_empty_list(self):
