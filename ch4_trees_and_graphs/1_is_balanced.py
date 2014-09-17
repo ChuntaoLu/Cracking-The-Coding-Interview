@@ -1,12 +1,6 @@
 import unittest
+from tree_utils import Node
 
-
-class Node(object):
-    """Node for binary tree."""
-    def __init__(self, data=None, left=None, right=None):
-        self.data = data
-        self.left = left
-        self.right = right
 
 def _check_height(node):
     """Recursively check if subtree is balanced, if so return height,

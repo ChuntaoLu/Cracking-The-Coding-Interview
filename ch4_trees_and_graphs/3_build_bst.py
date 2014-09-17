@@ -1,16 +1,7 @@
 import math
 import unittest
-from print_tree import tree_str
+from tree_utils import Node
 
-
-class Node(object):
-    def __init__(self, data=None, left=None, right=None):
-        self.data = data
-        self.left = left
-        self.right = right
-
-    def __repr__(self):
-        return tree_str(self)
 
 def build_minimal_bst(array, start, end):
     """Build a minimal height binary search tree given a sorted arry.
