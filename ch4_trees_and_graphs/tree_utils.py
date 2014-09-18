@@ -8,6 +8,9 @@ class Node(object):
         self.right = right
 
     def __repr__(self):
+        return str(self.data)
+
+    def show_tree(self):
         return tree_str(self)
 
 def print_tree(root, height=None):
