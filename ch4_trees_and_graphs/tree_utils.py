@@ -13,6 +13,16 @@ class Node(object):
     def show_tree(self):
         return tree_str(self)
 
+class NodeWithParent(Node):
+    """Node with link to its parent."""
+    def __init__(self, data=None, left=None, right=None, parent=None):
+        super().__init__(data, left, right)
+        if left:
+            left.parent = self
+        if right:
+            right.parent = self
+        self.parent = parent
+
 def print_tree(root, height=None):
     """Print tree."""
     print(tree_str(root, height))

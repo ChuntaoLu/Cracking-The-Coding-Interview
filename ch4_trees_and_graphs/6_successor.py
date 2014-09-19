@@ -1,16 +1,6 @@
 import unittest
-from tree_utils import Node
+from tree_utils import NodeWithParent
 
-
-class NodeWithParent(Node):
-    """Node with link to its parent."""
-    def __init__(self, data=None, left=None, right=None, parent=None):
-        super().__init__(data, left, right)
-        if left:
-            left.parent = self
-        if right:
-            right.parent = self
-        self.parent = parent
 
 def suscessor(node):
     """Return the successor of a node in a bst.
