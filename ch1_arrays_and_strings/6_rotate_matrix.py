@@ -1,3 +1,6 @@
+import unittest
+
+
 def right_rotate(array):
     """
     Assume N-by-N matrix is represented by 2-d array
@@ -33,26 +36,17 @@ def right_rotate_inplace(array):
             # top -> right
             array[i][end] = tmp
 
+class RightRotateTest(unittest.TestCase):
+    def test_right_rotate(self):
+        self.assertEqual([[1]], right_rotate([[1]]))
+        self.assertEqual([[3, 1], [4, 2]], right_rotate([[1, 2], [3, 4]]))
+        self.assertEqual([[7, 4, 1], [8, 5, 2], [9, 6, 3]],
+                right_rotate([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
 
-def print_matrix(array):
-    for row in array:
-        print row
-
-
-def main():
-    arrays = []
-    arrays.append([[1]])
-    arrays.append([[1, 2], [3, 4]])
-    arrays.append([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-    for a in arrays:
-        print 'Before:'
-        print_matrix(a)
-        print 'After right_rotate:'
-        print_matrix(right_rotate(a))
-        print 'After right_rotate_inplace:'
-        right_rotate_inplace(a)
-        print_matrix(a)
-        print '\n'
+    def test_right_rotate_inplace(self):
+        array = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        right_rotate_inplace(array)
+        self.assertEqual([[7, 4, 1], [8, 5, 2], [9, 6, 3]], array)
 
 if __name__ == '__main__':
-    main()
+    unittest.main()

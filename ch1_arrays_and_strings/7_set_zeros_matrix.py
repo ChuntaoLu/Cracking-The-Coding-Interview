@@ -1,3 +1,6 @@
+import unittest
+
+
 def set_zeros(array):
     """
     Assume M-by-N matrix is represented by 2-d array
@@ -16,25 +19,21 @@ def set_zeros(array):
             if r in rows or c in cols:
                 array[r][c] = 0
 
-def print_matrix(m):
-    for row in m:
-        print row
+class SetZerosTest(unittest.TestCase):
+    def test_non_zero(self):
+        matrix = [[1, 2], [3, 4]]
+        set_zeros(matrix)
+        self.assertEqual(matrix, matrix)
 
-def main():
-    arrays = []
-    arrays.append([[1, 0]])
-    arrays.append([[1, 2]])
-    arrays.append([[1, 2], [3, 4]])
-    arrays.append([[1, 0], [3, 4]])
-    arrays.append([[1, 0, 2], [3, 4, 5]])
-    arrays.append([[1, 0, 2], [3, 4, 5], [0, 3, 8]])
-    for a in arrays:
-        print 'Before:'
-        print_matrix(a)
-        print 'After: '
-        set_zeros(a)
-        print_matrix(a)
-        print '\n'
+    def test_has_zeros(self):
+        matrix = [[1, 0], [3, 4]]
+        set_zeros(matrix)
+        self.assertEqual([[0, 0], [3, 0]], matrix)
+
+    def test_has_zeros_2(self):
+        matrix = [[1, 0, 2], [3, 4, 5], [0, 3, 8]]
+        set_zeros(matrix)
+        self.assertEqual([[0, 0, 0], [0, 0, 5], [0, 0, 0]], matrix)
 
 if __name__ == '__main__':
-    main()
+    unittest.main()

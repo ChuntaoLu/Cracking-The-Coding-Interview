@@ -1,3 +1,6 @@
+import unittest
+
+
 def compress_string(s):
     can_compress = False
     for i in range(len(s) - 2):
@@ -20,19 +23,15 @@ def compress_string(s):
     compressed += last + str(count)
     return compressed
 
-def main():
-    stings = []
-    stings.append("")
-    stings.append("a")
-    stings.append("ab")
-    stings.append("aab")
-    stings.append("aabb")
-    stings.append("aaabb")
-    stings.append("aabcccccaaa")
-    for s in stings:
-        print '\n'
-        print 'Before: ', s
-        print 'After:  ', compress_string(s)
+class CompressStringTest(unittest.TestCase):
+    def test_not_compressable(self):
+        self.assertEqual('', compress_string(''))
+        self.assertEqual('ab', compress_string('ab'))
+        self.assertEqual('aab', compress_string('aab'))
+
+    def test_compressable(self):
+        self.assertEqual('a3b2', compress_string('aaabb'))
+        self.assertEqual('a2b1c5a3', compress_string('aabcccccaaa'))
 
 if __name__ == '__main__':
-    main()
+    unittest.main()
